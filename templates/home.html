@@ -93,12 +93,24 @@
         <h2>🏠 House Price Predictor</h2>
         <form id="predictForm">
             <div class="row g-2">
-                {% for field in [
-                'crim', 'zn', 'indus', 'chas', 'nox', 'rm', 'age',
-                'dis', 'rad', 'tax', 'ptratio', 'b', 'lstat'
-                ] %}
+                {% set readable_labels = {
+                'crim': 'Crime Rate',
+                'zn': 'Residential Land Zoned (%)',
+                'indus': 'Non-retail Business Acres',
+                'chas': 'Charles River Tract (1 = yes, 0 = no)',
+                'nox': 'Nitric Oxides Concentration (ppm)',
+                'rm': 'Average Rooms per Dwelling',
+                'age': 'Percentage of Old Units (%)',
+                'dis': 'Distance to Employment Centers',
+                'rad': 'Accessibility to Highways',
+                'tax': 'Property Tax Rate',
+                'ptratio': 'Pupil-Teacher Ratio',
+                'b': 'Black Population Index',
+                'lstat': '% Lower Status Population'
+                } %}
+                {% for field in readable_labels %}
                 <div class="col-md-6">
-                    <label for="{{ field }}" class="form-label">{{ field.upper() }}</label>
+                    <label for="{{ field }}" class="form-label">{{ readable_labels[field] }}</label>
                     <input type="number" step="any" class="form-control" id="{{ field }}" name="{{ field }}" required>
                 </div>
                 {% endfor %}
